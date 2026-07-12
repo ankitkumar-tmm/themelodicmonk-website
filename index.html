@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Melodic Monk Academy — Guitar, Violin & Flute Lessons in Ranchi</title>
+<meta name="description" content="Learn, Practice, Perform, Belong. Structured guitar, violin and flute lessons at The Melodic Monk Academy, Kathitand, Ratu, Ranchi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#a61212;
+    --maroon-dark:#7d0d0d;
+    --panel:#efe7e0;
+    --bg:#f6f2ee;
+    --ink:#2b211c;
+    --ink-soft:#5c4f47;
+    --line:rgba(166,18,18,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--maroon); color:#fff;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Playfair Display', serif; color:var(--maroon); margin:0;}
+ 
+  /* ---- corner ornament (treble clef, signature element) ---- */
+  .clef-corner{
+    position:absolute;
+    width:56px; height:56px;
+    opacity:0.85;
+    pointer-events:none;
+  }
+  .clef-corner svg{ width:100%; height:100%; }
+  .clef-tl{ top:18px; left:18px; }
+  .clef-tr{ top:18px; right:18px; transform:scaleX(-1); }
+  .clef-bl{ bottom:18px; left:18px; }
+  .clef-br{ bottom:18px; right:18px; transform:scaleX(-1); }
+ 
+  /* ---- Nav ---- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,242,238,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; max-width:1040px; margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-badge{
+    width:40px; height:40px; border-radius:50%;
+    background:var(--maroon); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif; font-weight:700; font-size:0.62rem;
+    text-align:center; line-height:1.05; letter-spacing:0.02em;
+    flex-shrink:0;
+  }
+  .brand-name{
+    font-family:'Playfair Display', serif;
+    font-weight:600; font-size:1.05rem; color:var(--maroon);
+  }
+  .brand-name small{
+    display:block; font-family:'Work Sans', sans-serif; font-weight:400;
+    font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  .nav-links{ display:flex; gap:26px; font-size:0.88rem; color:var(--ink-soft); }
+  .nav-links a{ text-decoration:none; transition:color .2s; }
+  .nav-links a:hover{ color:var(--maroon); }
+  .nav-cta{
+    font-size:0.85rem; padding:9px 18px; background:var(--maroon); color:#fff;
+    border-radius:22px; text-decoration:none; transition:background .2s;
+  }
+  .nav-cta:hover{ background:var(--maroon-dark); }
+  @media (max-width:760px){ .nav-links{ display:none; } }
+ 
+  /* ---- Hero ---- */
+  .hero{
+    position:relative;
+    padding:80px 0 56px;
+    text-align:center;
+  }
+  .hero-inner{
+    position:relative;
+    background:var(--panel);
+    border-radius:28px;
+    padding:56px 32px 44px;
+    max-width:820px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--maroon); font-weight:600;
+  }
+  h1{
+    font-size:clamp(2rem, 5vw, 2.9rem);
+    line-height:1.15;
+    margin:16px 0 10px;
+  }
+  h1 em{ font-style:italic; font-weight:500; }
+  .hero-sub{
+    color:var(--ink-soft); font-size:1.05rem; font-style:italic;
+    margin:0 0 26px;
+  }
+  .courses-line{
+    font-size:1rem; color:var(--ink); margin-bottom:34px;
+  }
+  .courses-line b{ color:var(--maroon); }
+  .cta-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{
+    display:inline-block; background:var(--maroon); color:#fff;
+    font-weight:600; font-size:0.95rem; padding:14px 30px;
+    border-radius:30px; text-decoration:none; transition:transform .15s, background .15s;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--maroon-dark); }
+  .btn-ghost{
+    display:inline-block; color:var(--maroon); font-size:0.95rem;
+    padding:14px 24px; text-decoration:none; border:1.5px solid var(--maroon);
+    border-radius:30px; transition:all .15s;
+  }
+  .btn-ghost:hover{ background:var(--maroon); color:#fff; }
+ 
+  /* ---- Musical note wave divider ---- */
+  .stave{
+    max-width:420px; margin:36px auto 0; opacity:0.75;
+  }
+ 
+  /* ---- Section shell ---- */
+  section{ padding:60px 0; }
+  .section-head{ text-align:center; margin-bottom:40px; }
+  .section-head .eyebrow{ display:block; margin-bottom:8px; }
+  h2{ font-size:clamp(1.6rem, 3.5vw, 2.1rem); }
+  .section-lede{
+    color:var(--ink-soft); max-width:60ch; margin:14px auto 0; font-size:1rem;
+  }
+ 
+  /* ---- About ---- */
+  .panel{
+    background:var(--panel); border-radius:24px; padding:40px;
+    position:relative;
+  }
+  .about-text p{ color:var(--ink-soft); max-width:70ch; margin:0 0 16px; }
+  .about-text p:last-child{ margin-bottom:0; }
+  .about-text strong{ color:var(--ink); font-weight:600; }
+ 
+  /* ---- Founder ---- */
+  .founder-grid{
+    display:grid; grid-template-columns:auto 1fr; gap:32px; align-items:start;
+  }
+  .founder-avatar{
+    width:110px; height:110px; border-radius:50%;
+    background:var(--maroon); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif; font-size:2rem; font-weight:600;
+    flex-shrink:0; border:4px solid #fff;
+  }
+  .founder-name{ font-family:'Playfair Display', serif; font-size:1.3rem; color:var(--maroon); font-weight:600; margin:0; }
+  .founder-role{ font-style:italic; color:var(--ink-soft); font-size:0.92rem; margin:4px 0 14px; }
+  .quote-row{ display:flex; gap:16px; flex-wrap:wrap; margin-top:20px; }
+  .quote{
+    background:#fff; border-left:3px solid var(--maroon);
+    padding:14px 18px; font-style:italic; font-size:0.9rem; color:var(--ink-soft);
+    flex:1; min-width:220px; border-radius:0 8px 8px 0;
+  }
+  .quote span{ display:block; margin-top:6px; color:var(--maroon); font-style:normal; font-size:0.8rem; font-weight:600;}
+  @media (max-width:640px){ .founder-grid{ grid-template-columns:1fr; text-align:center;} .founder-avatar{ margin:0 auto;} }
+ 
+  /* ---- Why choose us ---- */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+  }
+  .why-card{
+    background:var(--panel); border-radius:18px; padding:26px 22px;
+  }
+  .why-card h3{
+    font-size:1rem; color:var(--maroon); margin:0 0 8px; font-weight:600;
+  }
+  .why-card p{ color:var(--ink-soft); font-size:0.9rem; margin:0; }
+  @media (max-width:860px){ .why-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .why-grid{ grid-template-columns:1fr;} }
+ 
+  /* ---- Courses ---- */
+  .course-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+  }
+  .course-card{
+    background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px 24px;
+  }
+  .course-icon{ font-size:1.8rem; margin-bottom:10px; }
+  .course-card h3{ color:var(--maroon); font-size:1.15rem; margin:0 0 14px; }
+  .course-card ul{ margin:0; padding-left:18px; color:var(--ink-soft); font-size:0.88rem; }
+  .course-card li{ margin-bottom:6px; }
+  @media (max-width:860px){ .course-grid{ grid-template-columns:1fr;} }
+ 
+  /* ---- Fees table ---- */
+  .fees-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  }
+  .fee-card{ background:var(--panel); padding:26px 20px; text-align:center; }
+  .fee-amount{ font-family:'Playfair Display', serif; font-size:1.5rem; color:var(--maroon); font-weight:600; }
+  .fee-label{ font-size:0.82rem; color:var(--ink-soft); margin-top:6px; }
+  @media (max-width:760px){ .fees-grid{ grid-template-columns:1fr 1fr; } }
+ 
+  .fee-note{
+    text-align:center; color:var(--ink-soft); font-size:0.85rem; margin-top:18px; font-style:italic;
+  }
+ 
+  /* ---- Community ---- */
+  .community-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start;
+  }
+  .community-list{ list-style:none; padding:0; margin:0; }
+  .community-list li{
+    padding:10px 0; border-top:1px solid var(--line); color:var(--ink-soft); font-size:0.92rem;
+    display:flex; gap:10px;
+  }
+  .community-list li:before{ content:"♪"; color:var(--maroon); font-weight:700; }
+  @media (max-width:760px){ .community-grid{ grid-template-columns:1fr; } }
+ 
+  /* ---- Contact ---- */
+  .contact-wrap{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:start;
+  }
+  .contact-list{ list-style:none; padding:0; margin:20px 0 0; }
+  .contact-list li{
+    padding:14px 0; border-top:1px solid var(--line);
+    display:flex; gap:12px; align-items:baseline; font-size:0.95rem;
+  }
+  .contact-list li:last-child{ border-bottom:1px solid var(--line); }
+  .contact-list .icon{ color:var(--maroon); font-size:1rem; }
+  .social-row{ display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
+  .social-pill{
+    font-size:0.85rem; padding:8px 16px; border:1.5px solid var(--maroon);
+    border-radius:20px; color:var(--maroon); text-decoration:none; transition:all .15s;
+  }
+  .social-pill:hover{ background:var(--maroon); color:#fff; }
+  @media (max-width:760px){ .contact-wrap{ grid-template-columns:1fr; } }
+ 
+  footer{
+    position:relative;
+    padding:44px 0 40px; text-align:center; background:var(--panel);
+  }
+  footer .foot-brand{ font-family:'Playfair Display', serif; color:var(--maroon); font-weight:600; font-size:1.1rem; }
+  footer .foot-tag{ color:var(--ink-soft); font-size:0.85rem; font-style:italic; margin-top:6px; }
+  footer .foot-legal{ color:var(--ink-soft); font-size:0.75rem; margin-top:18px; opacity:0.8; }
+</style>
+</head>
+<body>
+ 
+<header>
+  <nav>
+    <div class="brand">
+      <div class="brand-badge">The<br>Melodic<br>Monk</div>
+      <div class="brand-name">Academy<small>Learn · Practice · Perform · Belong</small></div>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#courses">Courses</a>
+      <a href="#fees">Fees</a>
+      <a href="#community">Community</a>
+    </div>
+    <a class="nav-cta" href="#contact">Get in Touch</a>
+  </nav>
+</header>
+ 
+<section class="hero">
+  <div class="wrap" style="position:relative;">
+    <div class="clef-corner clef-tl" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M34 4c-6 2-9 8-8 15 1 6 5 11 9 16 3 4 5 7 4 11-1 4-5 6-8 4-3-2-3-6 0-8" stroke="#a61212" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="30" cy="52" r="6" fill="#a61212"/>
+        <path d="M34 4c4 3 6 8 4 13" stroke="#a61212" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="clef-corner clef-tr" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M34 4c-6 2-9 8-8 15 1 6 5 11 9 16 3 4 5 7 4 11-1 4-5 6-8 4-3-2-3-6 0-8" stroke="#a61212" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="30" cy="52" r="6" fill="#a61212"/>
+        <path d="M34 4c4 3 6 8 4 13" stroke="#a61212" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+ 
+    <div class="hero-inner">
+      <span class="eyebrow">The Melodic Monk Academy</span>
+      <h1>Learn, Practice, Perform, <em>Belong.</em></h1>
+      <p class="hero-sub">From your first note to your first performance — your complete musical journey starts here.</p>
+      <p class="courses-line">Courses offered: <b>Guitar</b> &nbsp;|&nbsp; <b>Violin</b> &nbsp;|&nbsp; <b>Flute</b></p>
+      <div class="cta-row">
+        <a class="btn-primary" href="https://wa.me/919798502550" target="_blank" rel="noopener">Book Admission on WhatsApp</a>
+        <a class="btn-ghost" href="#courses">Explore Courses</a>
+      </div>
+ 
+      <svg class="stave" viewBox="0 0 420 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 30 Q 60 5, 110 30 T 210 30 T 310 30 T 410 30" stroke="#a61212" stroke-width="1" opacity="0.5"/>
+        <circle cx="60" cy="34" r="4" fill="#a61212"/>
+        <circle cx="140" cy="24" r="4" fill="#a61212"/>
+        <circle cx="220" cy="36" r="4" fill="#a61212"/>
+        <circle cx="300" cy="22" r="4" fill="#a61212"/>
+        <circle cx="370" cy="34" r="4" fill="#a61212"/>
+      </svg>
+    </div>
+  </div>
+</section>
+ 
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">About the Academy</span>
+      <h2>Music as a way of life, not just a subject.</h2>
+    </div>
+    <div class="panel about-text">
+      <p>The Melodic Monk Academy is a passion-driven music learning space, founded with the vision to make quality
+      music education accessible, engaging, and enjoyable for everyone.</p>
+      <p>We believe that music is not just a subject — it's an emotion, a way of life. Our approach blends
+      practical learning, personalized mentorship, and performance opportunities so that every student experiences
+      music beyond the classroom.</p>
+      <p>Started in 2025 at Kathitand, Ratu, Ranchi, the academy follows a structured
+      <strong>One-Year Foundation Program</strong> designed to build strong musical fundamentals through practical
+      learning, consistent practice, and regular performance opportunities. Upon completing the course and passing
+      The Melodic Monk Performance Assessment, students become eligible to join The Melodic Monk Community and
+      continue their lifelong musical journey.</p>
+    </div>
+  </div>
+</section>
+ 
+<section id="founder">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Founder & Faculty</span>
+      <h2>Meet your instructor.</h2>
+    </div>
+    <div class="panel founder-grid">
+      <div class="founder-avatar">AK</div>
+      <div>
+        <p class="founder-name">Ankit Kumar</p>
+        <p class="founder-role">Founder, Director &amp; Lead Instructor, The Melodic Monk Academy</p>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0 0 8px;">
+          A passionate, self-trained musician exploring both Indian and Western classical music across Guitar,
+          Keyboard, Flute, Violin, Harmonium, and Cajon. Ankit started the academy to offer personalized, hands-on
+          music learning experiences for students of all ages — fun, practical, and performance-based.
+        </p>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0;">
+          Beyond teaching, Ankit produces and records music from his personal studio, regularly sharing covers
+          and devotional melodies on social media for learners and music lovers to explore and stay inspired.
+        </p>
+        <div class="quote-row">
+          <div class="quote">"For me, music is not about grades — it's about happiness and self-expression."<span>— Ankit Kumar</span></div>
+          <div class="quote">"My goal is not just to teach music — but to build confident performers."<span>— Ankit Kumar</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>We don't just teach music — we help you experience it.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><h3>Fun & Practical Learning</h3><p>Easy-to-understand, non-technical lessons, so every student feels confident while playing.</p></div>
+      <div class="why-card"><h3>All Ages & Levels</h3><p>A structured, level-based system for complete beginners and those with basic knowledge alike.</p></div>
+      <div class="why-card"><h3>Structured Foundation Program</h3><p>A carefully designed 12-month curriculum that builds strong musical fundamentals.</p></div>
+      <div class="why-card"><h3>Open Mic & Performances</h3><p>Regular student open mics, musical meetups, and jam sessions to build confidence.</p></div>
+      <div class="why-card"><h3>Performance Assessment</h3><p>Complete the program and clear the assessment to earn a Certificate of Musical Foundation.</p></div>
+      <div class="why-card"><h3>Founder-led Mentoring</h3><p>Learn directly from Ankit Kumar, ensuring a personal touch in every single class.</p></div>
+    </div>
+  </div>
+</section>
+ 
+<section id="courses">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Courses & Learning Journey</span>
+      <h2>Choose your instrument.</h2>
+      <p class="section-lede">Every student follows the One-Year Foundation Program — 12 months, one class every Sunday, with optional online guidance whenever required.</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card">
+        <div class="course-icon">🎸</div>
+        <h3>Guitar</h3>
+        <ul>
+          <li>Proper holding, tuning & basic techniques</li>
+          <li>Open string exercises & simple melodies</li>
+          <li>Basic chords & common strumming patterns</li>
+          <li>Bollywood & devotional songs</li>
+          <li>Intro to lead playing & melody picking</li>
+          <li>Performance preparation & confidence building</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-icon">🎻</div>
+        <h3>Violin</h3>
+        <ul>
+          <li>Correct posture, holding & bow control</li>
+          <li>Basic note practice & simple scales</li>
+          <li>Simple melodies & devotional tunes</li>
+          <li>Introduction to fingering techniques</li>
+          <li>Rhythm, timing & coordination</li>
+          <li>Group performance pieces & stage confidence</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-icon">🪈</div>
+        <h3>Flute</h3>
+        <ul>
+          <li>Holding the flute & proper blowing technique</li>
+          <li>Note clarity, long notes & breath control</li>
+          <li>Basic scale practice & simple melodies</li>
+          <li>Bollywood & devotional tunes</li>
+          <li>Introduction to Alankars (note patterns)</li>
+          <li>Performance practice & confidence building</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="fees">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Admission & Fees</span>
+      <h2>Simple, honest pricing.</h2>
+    </div>
+    <div class="fees-grid">
+      <div class="fee-card"><div class="fee-amount">₹500</div><div class="fee-label">Admission Fee<br>(one-time)</div></div>
+      <div class="fee-card"><div class="fee-amount">₹1000</div><div class="fee-label">Monthly Fee<br>(all instruments)</div></div>
+      <div class="fee-card"><div class="fee-amount">12 months</div><div class="fee-label">Foundation Program<br>Duration</div></div>
+      <div class="fee-card"><div class="fee-amount">₹500</div><div class="fee-label">Community Membership<br>(optional, per month)</div></div>
+    </div>
+    <p class="fee-note">Fees once paid are non-refundable and non-transferable. Monthly fees may be revised with prior notice.
+    Registration is completed in person at the academy, subject to seat availability.</p>
+  </div>
+</section>
+ 
+<section id="community">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Melodic Monk Community</span>
+      <h2>Learning doesn't end — it evolves.</h2>
+    </div>
+    <div class="panel community-grid">
+      <div>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0 0 14px;">
+          After completing the Foundation Program and clearing The Melodic Monk Performance Assessment, students can continue
+          their musical journey by joining The Melodic Monk Community — a lifelong musical network, not a regular
+          classroom program.
+        </p>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0; font-style:italic;">"Once a Melodic Monk, Always a Melodic Monk."</p>
+      </div>
+      <ul class="community-list">
+        <li>Monthly jam sessions & live performances</li>
+        <li>Musical meetups & workshops by guest artists</li>
+        <li>Guidance, mentorship & peer collaboration</li>
+        <li>Annual musical gatherings & networking</li>
+        <li>Creative musical projects</li>
+      </ul>
+    </div>
+  </div>
+</section>
+ 
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Quick Connect & Access</span>
+      <h2>Your stage is waiting.</h2>
+    </div>
+    <div class="contact-wrap">
+      <div>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0;">
+          Follow us for the latest music videos, student performances, open mic highlights, and upcoming event updates.
+        </p>
+        <ul class="contact-list">
+          <li><span class="icon">📍</span> Block Road, Kathitand, Ratu, Ranchi, Jharkhand, 835222</li>
+          <li><span class="icon">📞</span> <a href="tel:+919798502550">+91 97985 02550</a></li>
+          <li><span class="icon">✉️</span> <a href="mailto:themelodicmonk@gmail.com">themelodicmonk@gmail.com</a></li>
+        </ul>
+        <div class="social-row">
+          <a class="social-pill" href="https://instagram.com/themelodicmonk" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-pill" href="https://youtube.com/@themelodicmonk" target="_blank" rel="noopener">YouTube</a>
+          <a class="social-pill" href="https://facebook.com/themelodicmonkacademy" target="_blank" rel="noopener">Facebook</a>
+          <a class="social-pill" href="https://x.com/themelodicmonk" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+      <div class="panel" style="padding:32px;">
+        <h3 style="font-size:1.1rem; margin-bottom:14px;">Start your musical journey</h3>
+        <p style="color:var(--ink-soft); font-size:0.9rem; margin:0 0 20px;">
+          Message us on WhatsApp to ask about seat availability, timings, or to book your first visit.
+        </p>
+        <a class="btn-primary" style="width:100%; text-align:center;" href="https://wa.me/919798502550" target="_blank" rel="noopener">Message on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div class="clef-corner clef-bl" aria-hidden="true">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34 4c-6 2-9 8-8 15 1 6 5 11 9 16 3 4 5 7 4 11-1 4-5 6-8 4-3-2-3-6 0-8" stroke="#a61212" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="30" cy="52" r="6" fill="#a61212"/>
+    </svg>
+  </div>
+  <div class="clef-corner clef-br" aria-hidden="true">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34 4c-6 2-9 8-8 15 1 6 5 11 9 16 3 4 5 7 4 11-1 4-5 6-8 4-3-2-3-6 0-8" stroke="#a61212" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="30" cy="52" r="6" fill="#a61212"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="foot-brand">The Melodic Monk Academy</div>
+    <div class="foot-tag">Start your musical journey today. Your stage is waiting.</div>
+    <div class="foot-legal">© 2026 The Melodic Monk Academy, Kathitand, Ratu, Ranchi. All rights reserved.</div>
+  </div>
+</footer>
+ 
+</body>
+</html>
