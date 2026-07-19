@@ -229,7 +229,7 @@
     display:flex; gap:12px; align-items:center; font-size:0.95rem;
   }
   .contact-list li:last-child{ border-bottom:1px solid var(--line); }
-  .contact-list .icon{width:17px; height:17px; display:block; flex-shrink:0;}
+  .contact-list .icon{width:18px; height:18px; display:block; flex-shrink:0;}
   .social-row{
     display:flex;
     gap:5px;
