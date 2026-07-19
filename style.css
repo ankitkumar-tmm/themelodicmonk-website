@@ -232,7 +232,7 @@
   .contact-list .icon{width:18px; height:18px; display:block; flex-shrink:0;}
   .social-row{
     display:flex;
-    gap:10px;
+    gap:15px;
     margin-top:24px;
     flex-wrap:wrap;
     align-items:center;
