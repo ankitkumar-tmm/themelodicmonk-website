@@ -117,8 +117,11 @@
   .btn-ghost:hover{ background:var(--maroon); color:#fff; }
 
   /* ---- Musical note wave divider ---- */
-  .stave{
-    max-width:420px; margin:36px auto 0; opacity:0.75;
+  .staff-notation{
+    display:block;
+    width:150px;
+    max-width:100%;
+    margin:40px auto 0;
   }
 
   /* ---- Section shell ---- */
