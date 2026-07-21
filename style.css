@@ -112,8 +112,7 @@
     border-radius:20px;
 
     padding:20px 24px;
-    margin:30px auto;
-    margin-top: 5px;
+    margin:5px auto 30px;
 
     max-width:400px;
     width:100%;
@@ -129,12 +128,17 @@
     text-align:center;
     flex:1;
   }
-
+  .instrument a{
+    display:block;
+    cursor:pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
   /* SVG size */
   .instrument img{
+    display: block;
     height:95px;
     object-fit:contain;
-    transition:.3s;
+    transition:transform .25s ease;
   }
 
   /* Name below image */
@@ -145,25 +149,17 @@
     color:#a61212;
   }
 
-  /* Small hover effect */
-  .instrument:hover img{
-    transform:translateY(-5px) scale(1.05);
+  /* Desktop Hover */
+  @media (hover: hover){ 
+    .instrument a:hover img{transform:translateY(-5px) scale(1.05);}
   }
+  /* Mobile tap */
+  .instrument a:active img{transform:scale(1.05);}
+
   @media (max-width:760px){
-
-    .instrument-box{
-        padding:16px 12px;
-        gap:6px;
-    }
-
-    .instrument img{
-        height:70px;
-    }
-
-    .instrument span{
-        font-size:.9rem;
-    }
-
+    .instrument-box{padding:16px 12px;gap:6px;}
+    .instrument img{height:70px;}
+    .instrument span{font-size:.9rem;}
   }
   
   .cta-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
