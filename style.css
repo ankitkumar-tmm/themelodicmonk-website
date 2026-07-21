@@ -99,9 +99,73 @@
     margin:0 0 26px;
   }
   .courses-line{
-    font-size:1rem; color:var(--ink); margin-bottom:34px;
+    font-size:1rem; color:var(--maroon); margin-bottom:5px;
   }
-  .courses-line b{ color:var(--maroon); }
+
+  /* White box containing all instruments */
+  .instrument-box{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    background:#fff;
+    border-radius:20px;
+
+    padding:20px 24px;
+    margin:30px auto;
+    margin-top: 5px;
+
+    max-width:400px;
+    width:100%;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+  }
+
+  /* Each instrument */
+  .instrument{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    flex:1;
+  }
+
+  /* SVG size */
+  .instrument img{
+    height:95px;
+    object-fit:contain;
+    transition:.3s;
+  }
+
+  /* Name below image */
+  .instrument span{
+    margin-top:5px;
+    font-size:1rem;
+    font-weight:600;
+    color:#a61212;
+  }
+
+  /* Small hover effect */
+  .instrument:hover img{
+    transform:translateY(-5px) scale(1.05);
+  }
+  @media (max-width:760px){
+
+    .instrument-box{
+        padding:16px 12px;
+        gap:6px;
+    }
+
+    .instrument img{
+        height:70px;
+    }
+
+    .instrument span{
+        font-size:.9rem;
+    }
+
+  }
+
   .cta-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
   .btn-primary{
     display:inline-block; background:var(--maroon); color:#fff;
@@ -116,7 +180,7 @@
   }
   .btn-ghost:hover{ background:var(--maroon); color:#fff; }
 
-  /* ---- Musical note wave divider ---- */
+  /* ---- Staff Notation divider ---- */
   .staff-notation{
     display:block;
     width:150px;
