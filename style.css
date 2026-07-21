@@ -107,16 +107,13 @@
     display:flex;
     justify-content:space-around;
     align-items:center;
-
     background:#fff;
+    border: 1px solid var(--line);
     border-radius:20px;
-
     padding:20px 24px;
     margin:5px auto 30px;
-
     max-width:400px;
     width:100%;
-
     box-shadow:0 8px 25px rgba(0,0,0,.06);
   }
 
